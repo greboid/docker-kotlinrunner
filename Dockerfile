@@ -1,8 +1,7 @@
-FROM openjdk:11-jdk
+FROM openjdk:12-jdk-alpine
 WORKDIR /app
 ENV PATH="/opt/gradle/gradle-5.0/bin:/opt/kotlin/kotlinc/bin:${PATH}"
-RUN apt-get -q -y update && \
-    apt-get -q -y install ca-certificates curl zip unzip --no-install-recommends && \
+RUN apk add --no-cache zip unzip curl && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir /opt/kotlin && \
     curl -s -L "https://github.com/JetBrains/kotlin/releases/download/v1.3.10/kotlin-compiler-1.3.10.zip" -o kotlin.zip && \
